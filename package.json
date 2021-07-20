@@ -6,11 +6,11 @@
   "author": "Bobrova Alena",
   "license": "MIT",
   "scripts": {
-    "clean": "rimraf dist",
-    "dev": "npm-run-all --print-label --parallel start:*",
+    "dev": "npm run clean && npm-run-all --print-label --parallel start:*",
     "build": "npm run clean && npm-run-all --print-label --parallel build:*",
     "start": "node ./dist/server.js",
     "----------": "",
+    "clean": "rimraf dist",
     "start:server": "cross-env MODE_ENV=development webpack --progress --color --mode development --watch --config ./webpack/webpack.server.js",
     "start:web": "cross-env MODE_ENV=development webpack --watch --progress --color --mode development --config ./webpack/webpack.client.js",
     "start:mobile": "cross-env MODE_ENV=development IS_MOBILE=mobilemode webpack --watch --progress --color --mode development --config ./webpack/webpack.client.js", 
