@@ -21,7 +21,7 @@ const config = {
     chunkFilename: '[name].[chunkhash].chunk.js'
   },
   target: 'web',  
-  devtool: devMode ? 'inline-source-map' : 'source-map',
+  devtool: devMode ? 'inline-source-map' : 'nosources-source-map',
   plugins: baseConfig.plugins.concat([
     new LoadablePlugin({
       filename: `${isMobile? 'mobile': 'web'}-loadable-stats.json`
