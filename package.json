@@ -6,12 +6,14 @@
   "author": "Bobrova Alena",
   "license": "MIT",
   "scripts": {
-    "clean": "rimraf dist",
-    "start": "npm-run-all --print-label --parallel start:*",
+    "dev": "npm run clean && npm-run-all --print-label --parallel start:*",
+    "build": "npm run clean && npm-run-all --print-label --parallel build:*",
+    "start": "node ./dist/server.js",
     "----------": "",
+    "clean": "rimraf dist",
     "start:server": "cross-env MODE_ENV=development webpack --progress --color --mode development --watch --config ./webpack/webpack.server.js",
     "start:web": "cross-env MODE_ENV=development webpack --watch --progress --color --mode development --config ./webpack/webpack.client.js",
-    "start:mobile": "cross-env MODE_ENV=development IS_MOBILE=mobilemode webpack --watch --progress --color --mode development --config ./webpack/webpack.client.js",
+    "start:mobile": "cross-env MODE_ENV=development IS_MOBILE=mobilemode webpack --watch --progress --color --mode development --config ./webpack/webpack.client.js", 
     "build:server": "webpack --color --mode production --config ./webpack/webpack.server.js",
     "build:web": "webpack --color --mode production --config ./webpack/webpack.client.js",
     "build:mobile": "cross-env IS_MOBILE=mobilemode webpack --color --mode production --config ./webpack/webpack.client.js",
@@ -31,13 +33,8 @@
       "last 1 safari version"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "**/*": "eslint"
+  "engines": {
+    "node": "14.x"
   },
   "repository": {
     "type": "git",
@@ -97,8 +94,6 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "fork-ts-checker-webpack-plugin": "^6.2.12",
-    "husky": "^5.1.3",
-    "lint-staged": "^10.5.4",
     "mini-css-extract-plugin": "^2.1.0",
     "nodemon-webpack-plugin": "^4.5.2",
     "npm-run-all": "^4.1.5",

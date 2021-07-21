@@ -39,21 +39,21 @@ export function getRenderOptions(headers: IncomingHttpHeaders): RenderOptions {
       'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
   );
   const isMobile = !!mobileDetect.mobile();
-  return isMobile
-    ? {
-      rootSaga: mobileRootSaga,
-      entrypoints: appPath.mobileAppName,
-      statsFile: appPath.mobileLoadableStats,
-      App: MobileApp,
-      routes: mobileRoutes,
-      }
-    : {
-      rootSaga: webRootSaga,
-      entrypoints: appPath.webAppName,
-      statsFile: appPath.webLoadableStats,
-      App: WebApp,
-      routes: webRoutes,
-    };
+  const mobileOptions = {
+    rootSaga: mobileRootSaga,
+    entrypoints: appPath.mobileAppName,
+    statsFile: appPath.mobileLoadableStats,
+    App: MobileApp,
+    routes: mobileRoutes,
+  };
+  const webOptions = {
+    rootSaga: webRootSaga,
+    entrypoints: appPath.webAppName,
+    statsFile: appPath.webLoadableStats,
+    App: WebApp,
+    routes: webRoutes,
+  };
+  return isMobile ? mobileOptions : webOptions;
 }
 
 export function getDataRequirements(

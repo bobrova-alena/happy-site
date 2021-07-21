@@ -41,7 +41,8 @@ const config = {
           test: /[\\/]node_modules[\\/]/,
           chunks: 'all',
           name(module, chunks, cacheGroupKey) {
-            return cacheGroupKey;
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+            return `${packageName.replace('@', '')}.vendor`;
           },
         },
       },

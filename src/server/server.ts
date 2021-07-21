@@ -7,7 +7,7 @@ import { readNumber, IDocument, replaceNumber } from './db';
 import { serverRender } from './server-render-middleware';
 
 const app = express();
-const port = 3080;
+const port = process.env.PORT || 3080;
 
 app.use(bodyParser.json());
 
